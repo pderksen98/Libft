@@ -1,45 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putnbr_fd.c                                     :+:    :+:            */
+/*   ft_strdup_c.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pderksen <pderksen@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/10/28 12:23:35 by pderksen      #+#    #+#                 */
-/*   Updated: 2021/11/24 15:05:24 by pderksen      ########   odam.nl         */
+/*   Created: 2022/01/25 09:59:08 by pderksen      #+#    #+#                 */
+/*   Updated: 2022/01/25 10:44:05 by pderksen      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <string.h>
+#include <stdlib.h>
 #include <stdio.h>
 #include "libft.h"
 
-void	ft_putchar(int n, int fd)
+char	*ft_strdup_c(char *line, char c)
 {
-	char	c;
+	int		len;
+	int		i;
+	char	*newline;
 
-	c = n + '0';
-	write(fd, &c, 1);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n == -2147483648)
+	len = 0;
+	while (line[len] != '\0' && line[len] != c)
+		len++;
+	newline = (char *)malloc(sizeof(char) * len);
+	if (!newline)
+		return (NULL);
+	i = 0;
+	while (i < len)
 	{
-		write(fd, "-2147483648", 11);
-		return ;
+		newline[i] = line[i];
+		i++;
 	}
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		n *= -1;
-	}
-	if (n >= 10)
-	{
-		ft_putnbr_fd((n / 10), fd);
-		ft_putnbr_fd((n % 10), fd);
-	}
-	else
-		ft_putchar(n, fd);
+	newline[i] = '\0';
+	return (newline);
 }

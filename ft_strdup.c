@@ -6,7 +6,7 @@
 /*   By: pderksen <pderksen@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/28 15:16:27 by pderksen      #+#    #+#                 */
-/*   Updated: 2021/10/28 15:16:28 by pderksen      ########   odam.nl         */
+/*   Updated: 2022/02/24 10:40:08 by pderksen      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ char	*ft_strdup(const char *s1)
 		ptr[i] = s1[i];
 		i++;
 	}
+	ptr[i] = '\0';
 	return (ptr);
 }

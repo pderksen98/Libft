@@ -6,13 +6,26 @@
 /*   By: pderksen <pderksen@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/28 12:25:04 by pderksen      #+#    #+#                 */
-/*   Updated: 2021/10/29 10:48:50 by pderksen      ########   odam.nl         */
+/*   Updated: 2022/05/26 16:06:38 by pderksen      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stdlib.h>
+# include <stdio.h>
+
+typedef enum e_int
+{
+	INT_MAX = 2147483647,
+	INT_MIN = -2147483648
+}	t_int;
+
+typedef struct s_list
+{
+	void			*ct;
+	struct s_list	*next;
+}	t_list;
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -48,4 +61,9 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char	*ft_strdup_c(char *line, char c);
+void	ft_check_malloc(void *ptr);
+int		ft_split_len(char **line_2d);
+void	ft_split_free(char **line_2d);
+
 #endif

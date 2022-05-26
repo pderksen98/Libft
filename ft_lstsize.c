@@ -1,45 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putnbr_fd.c                                     :+:    :+:            */
+/*   ft_lstsize.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: pderksen <pderksen@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/10/28 12:23:35 by pderksen      #+#    #+#                 */
-/*   Updated: 2021/11/24 15:05:24 by pderksen      ########   odam.nl         */
+/*   Created: 2022/05/26 16:09:38 by pderksen      #+#    #+#                 */
+/*   Updated: 2022/05/26 16:09:52 by pderksen      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
 #include "libft.h"
 
-void	ft_putchar(int n, int fd)
+int	ft_lstsize(t_list *lst)
 {
-	char	c;
+	int	i;
 
-	c = n + '0';
-	write(fd, &c, 1);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n == -2147483648)
+	if (!lst)
+		return (0);
+	i = 0;
+	while (lst)
 	{
-		write(fd, "-2147483648", 11);
-		return ;
+		lst = lst->next;
+		i++;
 	}
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		n *= -1;
-	}
-	if (n >= 10)
-	{
-		ft_putnbr_fd((n / 10), fd);
-		ft_putnbr_fd((n % 10), fd);
-	}
-	else
-		ft_putchar(n, fd);
+	return (i);
 }

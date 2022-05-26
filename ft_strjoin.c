@@ -6,7 +6,7 @@
 /*   By: pderksen <pderksen@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/28 12:23:59 by pderksen      #+#    #+#                 */
-/*   Updated: 2021/10/28 12:24:00 by pderksen      ########   odam.nl         */
+/*   Updated: 2021/12/07 15:50:57 by pderksen      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (s1 == 0 || s2 == 0)
 		return (NULL);
 	str = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (str == 0)
+	if (!str)
 		return (NULL);
 	return (mr_magic(s1, s2, str));
 }

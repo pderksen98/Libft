@@ -1,6 +1,7 @@
 # -*- Makefile -*-
 NAME := libft.a
 CFLAGS ?= -Wall -Wextra -Werror
+
 SRCS := \
 ft_atoi.c \
 ft_bzero.c \
@@ -35,26 +36,58 @@ ft_putstr_fd.c \
 ft_putendl_fd.c \
 ft_putnbr_fd.c \
 ft_strmapi.c \
-ft_striteri.c 
+ft_striteri.c \
+ft_split_len.c \
+ft_strdup_c.c \
+ft_check_malloc.c 
+
+SRCS_BONUS := \
+ft_lstadd_back.c \
+ft_lstadd_front.c \
+ft_lstclear.c \
+ft_lstdelone.c \
+ft_lstiter.c \
+ft_lstlast.c \
+ft_lstmap.c \
+ft_lstnew.c \
+ft_lstsize.c
 
 OBJS := ${SRCS:%.c=%.o}
 
+OBJS_BONUS := ${SRCS_BONUS:%.c=%.o}
+
 HEADERFILES := libft.h
+
+RED := "\033[1;31m"
+GREEN := "\033[1;32m"
+CYAN := "\033[1;36m"
+
+ifdef EXEC_BONUS
+ALL_OBJS = $(OBJS) $(OBJS_BONUS)
+else
+ALL_OBJS = $(OBJS)
+endif
 
 all: $(NAME)
 	
 %.o: %.c $(HEADERFILES)
-	$(CC) -c $(CFLAGS) -o $@ $<
+	@$(CC) -c $(CFLAGS) -o $@ $<
 
-$(NAME): $(OBJS)
-	ar -ru $(NAME) $^
+$(NAME): $(ALL_OBJS)
+	@ar -ru $(NAME) $^
+	@echo $(GREEN) "Object files created for LIBFT [OK]"
+
+bonus:
+	@$(MAKE) EXEC_BONUS=1
 
 clean:
-	rm -f $(OBJS) 
+	@rm -f $(OBJS) $(OBJS_BONUS)
+	@echo $(RED) "Deleting object files from libft [OK]"
 
 fclean: clean
-	rm -f $(NAME) $^
+	@rm -f $(NAME) $^
+	@echo $(RED) "Deleting library file libft.a [OK]"
 
 re: fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY: all, clean, fclean, re, bonus
